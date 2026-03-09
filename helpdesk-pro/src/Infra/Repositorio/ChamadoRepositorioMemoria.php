@@ -1,5 +1,5 @@
 <?php
-// src/Infra/Repositorio/ChamadoRepositorioMemoria.php
+
 namespace Infra\Repositorio;
 use Domain\Entidade\Chamado;
 use Domain\Repositorio\ChamadoRepositorioInterface;
@@ -7,7 +7,7 @@ class ChamadoRepositorioMemoria implements ChamadoRepositorioInterface
 {
 /** @var Chamado[] */
 private array $storage = [];
-// ── CRUD Base ───────────────────────────────────────────────────
+// === === === CRUD Base === === ===
 public function buscarPorId(int $id): ?Chamado
 {
 return $this->storage[$id] ?? null;
@@ -42,7 +42,7 @@ public function contar(): int
 {
 return count($this->storage);
 }
-// ── Filtros por status ──────────────────────────────────────────
+// === === === Filtros por status === === ===
 public function buscarPorStatus(string $status): array
 {
 return array_values(array_filter(
@@ -58,7 +58,7 @@ fn(Chamado $c) => $c->estaAberto()
 ));
 
 }
-// ── Filtros por ator ────────────────────────────────────────────
+// === === === Filtros por ator === === ===
 public function buscarPorCliente(int $idCliente): array
 {
 return array_values(array_filter(
@@ -80,7 +80,7 @@ $this->storage,
 fn(Chamado $c) => $c->getIdTecnico() === $idTecnico && $c->estaAberto()
 ));
 }
-// ── Filtros por classificação ───────────────────────────────────
+// === === === Filtros por classificação === === ===
 public function buscarPorTipo(string $tipo): array
 {
 return array_values(array_filter(
@@ -95,7 +95,7 @@ $this->storage,
 fn(Chamado $c) => $c->getPrioridade() === $prioridade
 ));
 }
-// ── Estatísticas ────────────────────────────────────────────────
+// === === === Estatísticas === === ===
 public function contarPorStatus(): array
 {
 $resultado = [];
@@ -103,7 +103,7 @@ foreach ($this->storage as $chamado) {
 $st = $chamado->getStatus();
 $resultado[$st] = ($resultado[$st] ?? 0) + 1;
 }
-arsort($resultado); // ordena por quantidade desc
+arsort($resultado);
 return $resultado;
 }
 public function contarPorPrioridade(): array

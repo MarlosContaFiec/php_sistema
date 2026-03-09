@@ -1,5 +1,6 @@
 <?php
 
+namespace Domain\Entidade;
 class Tecnico extends Usuario
 {
     public function __construct(
@@ -9,15 +10,11 @@ class Tecnico extends Usuario
         parent::__construct($nome, $email, $senha);
     }
 
-
-    // OBRIGADO a implementar getPermissao()
     public function getPermissao(): string
     {
         return 'TECNICO';
     }
 
-
-    // OBRIGADO a implementar exibirPerfil()
     public function exibirPerfil(): void
     {
         echo "[TÉCNICO] {$this->nome} | {$this->email} | {$this->especialidade}\n";

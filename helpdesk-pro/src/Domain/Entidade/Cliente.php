@@ -1,5 +1,6 @@
 <?php
 
+namespace Domain\Entidade;
 class Cliente extends Usuario
 {
     public function __construct(
@@ -9,12 +10,10 @@ class Cliente extends Usuario
         parent::__construct($nome, $email, $senha);
     }
 
-
     public function getPermissao(): string
     {
         return 'CLIENTE';
     }
-
 
     public function exibirPerfil(): void
     {

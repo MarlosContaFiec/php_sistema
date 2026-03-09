@@ -1,13 +1,14 @@
 <?php
-// src/Infra/Repositorio/UsuarioRepositorioMemoria.php
+
 namespace Infra\Repositorio;
 use Domain\Entidade\Usuario;
 use Domain\Repositorio\UsuarioRepositorioInterface;
+
 class UsuarioRepositorioMemoria implements UsuarioRepositorioInterface
 {
 /** @var Usuario[] */
 private array $storage = [];
-// ── CRUD Base ───────────────────────────────────────────────────
+// === === ===CRUD Base === === ===
 public function buscarPorId(int $id): ?Usuario
 {
 return $this->storage[$id] ?? null;
@@ -48,7 +49,7 @@ public function contar(): int
 {
 return count($this->storage);
 }
-// ── Buscas específicas de Usuário ───────────────────────────────
+// === === === Buscas específicas de Usuário === === ===
 public function buscarPorEmail(string $email): ?Usuario
 {
 foreach ($this->storage as $usuario) {
